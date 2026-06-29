@@ -40,10 +40,12 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 script = ExtResource("1_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+limit_bottom = 20
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -53,15 +55,16 @@ sprite_frames = SubResource("SpriteFrames_fjrip")
 autoplay = "default"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-9, 10, 8, 10, 9, -9, 1, -7, -8, 1)
+polygon = PackedVector2Array(-8, 10, 1, 10, 10, -8, 4, -9, -8, 1)
 
 [node name="CoyoteTime" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="SlowTime" type="Timer" parent="."]
-wait_time = 0.065
+wait_time = 0.25
 one_shot = true
+autostart = true
 ignore_time_scale = true
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]

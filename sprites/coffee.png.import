@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctd5kbuke7j1s"
-path="res://.godot/imported/TileMapLateForWork(1).png-8e5e6a8b931a1a44f96cd87785fd898c.ctex"
+uid="uid://c305swqc2i8a7"
+path="res://.godot/imported/coffee.png-cf23d69c16bad8782f7e77caaf240c34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/TileMapLateForWork(1).png"
-dest_files=["res://.godot/imported/TileMapLateForWork(1).png-8e5e6a8b931a1a44f96cd87785fd898c.ctex"]
+source_file="res://sprites/coffee.png"
+dest_files=["res://.godot/imported/coffee.png-cf23d69c16bad8782f7e77caaf240c34.ctex"]
 
 [params]
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdeneqijmca1s"]
+
+[ext_resource type="Script" uid="uid://cqhv6u7q4px76" path="res://hud.gd" id="1_k5de2"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k5de2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 383.0
+offset_bottom = 289.0
+text = "ITEMS:
+Coffee: 0
+Adrenaline: 0"
