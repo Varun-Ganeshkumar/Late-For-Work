@@ -8,6 +8,7 @@ shader = ExtResource("2_fls4u")
 shader_parameter/alpha = 1.0
 shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0
+shader_parameter/standard = 0.0
 
 [node name="HUD" type="Control"]
 layout_mode = 3
