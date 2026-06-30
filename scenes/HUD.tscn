@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdeneqijmca1s"]
+
+[ext_resource type="Script" uid="uid://cqhv6u7q4px76" path="res://scripts/hud.gd" id="1_k5de2"]
+[ext_resource type="Shader" uid="uid://dc0haxjkleyjv" path="res://vignette.gdshader" id="2_fls4u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1etfg"]
+shader = ExtResource("2_fls4u")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k5de2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+z_index = 9
+offset_right = 383.0
+offset_bottom = 289.0
+text = "ITEMS:
+Coffee: 0
+Adrenaline: 0"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_1etfg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
