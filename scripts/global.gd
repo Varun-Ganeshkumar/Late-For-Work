@@ -1,6 +1,6 @@
 extends Node
 
-var coyote_time := true
+var coyote_time := false
 var hc_coffee := 0
 var hc_adr := 0
 var restart := false

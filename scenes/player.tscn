@@ -60,7 +60,7 @@ frame_progress = 0.333284
 polygon = PackedVector2Array(-8, 10, 1, 10, 10, -8, 4, -9, -8, 1)
 
 [node name="CoyoteTime" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="SlowTime" type="Timer" parent="."]
@@ -69,5 +69,10 @@ one_shot = true
 autostart = true
 ignore_time_scale = true
 
+[node name="FromCoyote" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="SlowTime" to="." method="_on_slow_time_timeout"]
+[connection signal="timeout" from="FromCoyote" to="." method="_on_from_coyote_timeout"]
