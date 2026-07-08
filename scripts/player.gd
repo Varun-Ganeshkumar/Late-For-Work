@@ -5,6 +5,7 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 var has_double_jump = 2
 var from_coyote = false
+var jump_anim = true
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_time: Timer = $CoyoteTime
@@ -12,7 +13,10 @@ var from_coyote = false
 @onready var fromCoyote: Timer = $FromCoyote
 
 func _physics_process(delta: float) -> void:
-	print(str(global.coyote_time) + str(has_double_jump) + str (from_coyote))
+	# Jumping animation (up here for priority to make it work)
+	if Input.is_action_just_pressed("jump") and has_double_jump < 2:
+		animated_sprite_2d.stop()
+		animated_sprite_2d.play("jumping")
 	if global.restart == true:
 		Engine.time_scale = 1
 		global.restart = false
@@ -47,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		has_double_jump = 0
 		from_coyote = false
+		jump_anim = true
 	# Main time mechanic
 	if (Input.is_action_just_pressed("slow") && global.hc_adr > 0):
 		Engine.time_scale = Engine.time_scale + 0.5
@@ -62,6 +67,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	# Animations
+	if direction and velocity.y == 0:
+		animated_sprite_2d.play("running")
+	if !direction and is_on_floor():
+		animated_sprite_2d.play("idle")
+	if velocity.y != 0 and jump_anim == true:
+		animated_sprite_2d.play("jumping")
+		jump_anim = false
 	# Flips sprite 
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
