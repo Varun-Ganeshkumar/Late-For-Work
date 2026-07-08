@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bhc2g6aljbd0l"]
+[gd_scene load_steps=13 format=4 uid="uid://bhc2g6aljbd0l"]
 
 [ext_resource type="PackedScene" uid="uid://cqlm5lrjjq35l" path="res://scenes/player.tscn" id="1_y0kc7"]
 [ext_resource type="Texture2D" uid="uid://cbfr5b1kfyoh1" path="res://sprites/TileMapLateForWork(3).png" id="2_ne2mo"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7yxq08o1xyl4" path="res://scenes/adrenaline.tscn" id="5_hey2k"]
 [ext_resource type="PackedScene" uid="uid://c711845ln1r1c" path="res://scenes/coffee.tscn" id="6_172wr"]
 [ext_resource type="PackedScene" uid="uid://d1hplx16ex8gj" path="res://scenes/level_end.tscn" id="7_g2hoc"]
+[ext_resource type="PackedScene" uid="uid://cdeneqijmca1s" path="res://scenes/HUD.tscn" id="8_ne2mo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rus8k"]
 texture = ExtResource("2_ne2mo")
@@ -99,3 +100,5 @@ position = Vector2(222, -114)
 [node name="LevelEnd" parent="." instance=ExtResource("7_g2hoc")]
 z_index = 1
 position = Vector2(667, -183)
+
+[node name="HUD" parent="." instance=ExtResource("8_ne2mo")]
