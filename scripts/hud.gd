@@ -2,17 +2,20 @@ extends Control
 
 @onready var border = $CanvasLayer/ColorRect
 var color_change = 1.00
+var intensityHere = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	%Label.text = "ITEMS: \n Coffee: " + str(global.hc_coffee) + "\n Adrenaline: " + str(global.hc_adr);
-	border.material.set_shader_parameter('alpha', abs(global.shader_mult));
+	border.material.set_shader_parameter('alpha', intensityHere * abs(global.shader_mult));
 # IF COLOR CHANGE IS 1, THAT MEANS IT WILL TURN WHITE
 	if global.shader_mult > 0:
 		color_change = 0.00
+		intensityHere = 2
 		border.material.set_shader_parameter("standard" , color_change);
 	if global.shader_mult < 0:
 		_colorTransition()
+		intensityHere = 1
 			
 			
 func _colorTransition() -> void:

@@ -94,7 +94,7 @@ func _on_slow_time_timeout() -> void:
 	if Engine.time_scale <= 0.50:
 		get_tree().reload_current_scene()
 		Engine.time_scale = 1
-	Engine.time_scale = Engine.time_scale - 0.01
+	Engine.time_scale = Engine.time_scale - 0.012
 	global.shader_mult = 1 - Engine.time_scale
 	slow_time.start()
 
