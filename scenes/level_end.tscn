@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1hplx16ex8gj"]
+[gd_scene load_steps=7 format=3 uid="uid://d1hplx16ex8gj"]
 
 [ext_resource type="Script" uid="uid://beucu6p2vi82w" path="res://scripts/level_end.gd" id="1_07sjm"]
-[ext_resource type="Texture2D" uid="uid://c2figsjvtsgud" path="res://icon.png" id="1_muv60"]
+[ext_resource type="Texture2D" uid="uid://dtr42ml186i4t" path="res://sprites/stopwatch-1.png.png" id="2_07sjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_07sjm"]
-radius = 4.0
+radius = 7.9065
+
+[sub_resource type="Animation" id="Animation_fe1ek"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(2.29, 2.299, 2.29),
+"update": 0,
+"values": [Vector2(0, -11.676), Vector2(0, 11.676), Vector2(0, -11.676)]
+}
+
+[sub_resource type="Animation" id="Animation_vgd82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -35.0279)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovig0"]
+_data = {
+&"RESET": SubResource("Animation_vgd82"),
+&"new_animation": SubResource("Animation_fe1ek")
+}
 
 [node name="LevelEnd" type="Area2D"]
 z_index = 3
@@ -12,10 +50,18 @@ script = ExtResource("1_07sjm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
+position = Vector2(0, -35.0279)
 shape = SubResource("CircleShape2D_07sjm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.101563, 0.125)
-texture = ExtResource("1_muv60")
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-1, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_07sjm")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ovig0")
+}
+autoplay = "new_animation"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
