@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3j2phqk65jjs"]
+
+[ext_resource type="Texture2D" uid="uid://c8s4cudhf5x7w" path="res://sprites/city by cityvector91.jpg" id="1_k1iwu"]
+
+[node name="ParallaxBackground" type="Node2D"]
+texture_repeat = 2
+position = Vector2(3, 64)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+texture_repeat = 2
+scroll_scale = Vector2(0.1, 0.3)
+repeat_size = Vector2(500, 0)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture_repeat = 2
+position = Vector2(-1, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_k1iwu")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 3000)
