@@ -1,10 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://7yxq08o1xyl4"]
+[gd_scene load_steps=7 format=3 uid="uid://7yxq08o1xyl4"]
 
 [ext_resource type="Script" uid="uid://d50nr56e4vtx" path="res://scripts/adrenaline.gd" id="1_on0y4"]
-[ext_resource type="Texture2D" uid="uid://c2figsjvtsgud" path="res://icon.png" id="2_4ijpr"]
+[ext_resource type="Texture2D" uid="uid://cwbwni676h3b7" path="res://sprites/New Piskel-1.png.png" id="2_on0y4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ki8o"]
-size = Vector2(28, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ijpr"]
+radius = 4.3226
+height = 35.0279
+
+[sub_resource type="Animation" id="Animation_vgd82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -35.0279)]
+}
+
+[sub_resource type="Animation" id="Animation_fe1ek"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(2.29, 2.299, 2.29),
+"update": 0,
+"values": [Vector2(0, -11.676), Vector2(0, 11.676), Vector2(0, -11.676)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovig0"]
+_data = {
+&"RESET": SubResource("Animation_vgd82"),
+&"new_animation": SubResource("Animation_fe1ek")
+}
 
 [node name="Adrenaline" type="Area2D"]
 z_index = 4
@@ -12,11 +51,20 @@ scale = Vector2(0.306551, 0.342584)
 script = ExtResource("1_on0y4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0ki8o")
+position = Vector2(0, -35.0279)
+rotation = 0.888373
+shape = SubResource("CapsuleShape2D_4ijpr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1.19209e-07)
-scale = Vector2(0.453125, 0.390625)
-texture = ExtResource("2_4ijpr")
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-2.6701, 12.5423)
+rotation = -0.888373
+scale = Vector2(0.688099, 0.59292)
+texture = ExtResource("2_on0y4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ovig0")
+}
+autoplay = "new_animation"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
