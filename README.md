@@ -4,7 +4,7 @@ A platformer where time constantly slows down, so you need to collect items to k
 
 Play here: https://lionclaws.itch.io/late-for-work 
 
-<img width="545" height="272" alt="finalDevlog" src="https://github.com/user-attachments/assets/9ce6d11d-4ec3-4e4e-a3a2-8fb834b09cd0" />
+<img width="1706" height="902" alt="Appealing Image" src="https://github.com/user-attachments/assets/03e06a49-e2e8-4281-b5b8-6fc23b432f14" />
 
 
 Collect items such as coffee and caffeine pills to speed up time before you fall asleep. You have three lives, so make the best of them or start the entire game all over again. 
