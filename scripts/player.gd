@@ -17,8 +17,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and has_double_jump < 2:
 		animated_sprite_2d.stop()
 		animated_sprite_2d.play("jumping")
+	# If you fall into the void
 	if global.restart == true:
 		Engine.time_scale = 1
+		if global.victory == false:
+			global.hc_adr = 0
+			global.hc_coffee = 0
+		elif global.victory == true:
+			global.hc_adr = 999
+			global.hc_coffee = 999
 		global.restart = false
 	var was_on_floor = is_on_floor()
 	# Add the gravity.
@@ -41,24 +48,24 @@ func _physics_process(delta: float) -> void:
 			has_double_jump += 1
 			if global.coyote_time:
 				has_double_jump = 0
-				if (!is_on_floor() and !global.coyote_time) and !from_coyote and Input.is_action_just_pressed("jump"):
+				if (!is_on_floor() and !global.coyote_time) and !from_coyote and Input.is_action_just_pressed("jump") and global.victory == false:
 					has_double_jump = 2
 			elif !global.coyote_time:
 				has_double_jump = 1
-				if (!is_on_floor() and !global.coyote_time) and !from_coyote and Input.is_action_just_pressed("jump"):
+				if (!is_on_floor() and !global.coyote_time) and !from_coyote and Input.is_action_just_pressed("jump") and global.victory == false:
 					has_double_jump = 2
-				
+	# Should help with coyote time, double jump, and related animations
 	if is_on_floor():
 		has_double_jump = 0
 		from_coyote = false
 		jump_anim = true
-	# Main time mechanic
+	# Main time mechanic 
 	if (Input.is_action_just_pressed("slow") && global.hc_adr > 0):
 		Engine.time_scale = Engine.time_scale + 0.5
 		slow_time.start()
 		global.hc_adr = global.hc_adr - 1 
 	if (Input.is_action_just_pressed("coffee") && global.hc_coffee > 0):
-		Engine.time_scale = Engine.time_scale + 0.5
+		Engine.time_scale = Engine.time_scale + 0.25
 		slow_time.start()
 		global.hc_coffee = global.hc_coffee - 1
 	# Get the input direction and handle the movement/deceleration.
@@ -85,18 +92,26 @@ func _physics_process(delta: float) -> void:
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		global.coyote_time = true
 		coyote_time.start()
+	if get_tree().current_scene.scene_file_path == "res://scenes/level_5.tscn":
+		global.victory = true
 # Adds coyote time for better movement
 func _on_coyote_time_timeout() -> void:
 	global.coyote_time = false
 	has_double_jump = 0
 # Slows down time constantly
 func _on_slow_time_timeout() -> void:
-	if Engine.time_scale <= 0.50:
-		get_tree().reload_current_scene()
-		Engine.time_scale = 1
-	Engine.time_scale = Engine.time_scale - 0.012
-	global.shader_mult = 1 - Engine.time_scale
-	slow_time.start()
+	if get_tree().current_scene.scene_file_path != "res://scenes/level_5.tscn":
+		if Engine.time_scale <= 0.50:
+			global.restart = true
+			get_tree().reload_current_scene()
+			if global.lives > 1:
+				global.lives -= 1
+			if global.lives == 1:
+				global.rareDeath = true
+		Engine.time_scale = Engine.time_scale - global.easyMode
+		global.shader_mult = 1 - Engine.time_scale
+		slow_time.start()
+
 
 func _on_from_coyote_timeout() -> void:
 	from_coyote = false

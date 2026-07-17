@@ -5,7 +5,7 @@ var color_change = 1.00
 var intensityHere = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	%Label.text = "ITEMS: \n Coffee: " + str(global.hc_coffee) + "\n Adrenaline: " + str(global.hc_adr);
 	border.material.set_shader_parameter('alpha', intensityHere * abs(global.shader_mult));
 # IF COLOR CHANGE IS 1, THAT MEANS IT WILL TURN WHITE
@@ -16,6 +16,11 @@ func _process(delta: float) -> void:
 	if global.shader_mult < 0:
 		_colorTransition()
 		intensityHere = 1
+	if global.lives == 2:
+		$CanvasLayer/Sprite2D3.hide()
+	if global.lives == 1:
+		$CanvasLayer/Sprite2D2.hide()
+		$CanvasLayer/Sprite2D3.hide()
 			
 			
 func _colorTransition() -> void:

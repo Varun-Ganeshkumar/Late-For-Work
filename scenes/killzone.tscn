@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://mra0as80hy6c"]
+[gd_scene load_steps=7 format=3 uid="uid://mra0as80hy6c"]
 
 [ext_resource type="Script" uid="uid://bdlmeg1njv855" path="res://scripts/killzone.gd" id="1_xlapc"]
+[ext_resource type="Script" uid="uid://8e7rd0if3tus" path="res://scripts/button.gd" id="2_kl8fp"]
+[ext_resource type="Script" uid="uid://bjj5ag7kvlbrp" path="res://scripts/button_2.gd" id="3_j2mit"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kl8fp"]
 distance = -37.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2mit"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mw1oh"]
+bg_color = Color(0.277528, 0.277528, 0.277528, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Killzone" type="Area2D"]
 script = ExtResource("1_xlapc")
@@ -15,5 +31,49 @@ shape = SubResource("WorldBoundaryShape2D_kl8fp")
 wait_time = 0.5
 ignore_time_scale = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+z_index = 1
+offset_left = -71.0
+offset_top = -29.0
+offset_right = 1282.0
+offset_bottom = 699.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+process_mode = 3
+z_index = 2
+offset_left = 395.0
+offset_top = 146.0
+offset_right = 746.0
+offset_bottom = 282.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_j2mit")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mw1oh")
+action_mode = 0
+text = "Try Again"
+script = ExtResource("2_kl8fp")
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+process_mode = 3
+z_index = 2
+offset_left = 395.0
+offset_top = 402.0
+offset_right = 746.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_j2mit")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mw1oh")
+action_mode = 0
+text = "Main Menu"
+script = ExtResource("3_j2mit")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_pressed"]
