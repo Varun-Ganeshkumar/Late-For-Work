@@ -13,11 +13,12 @@ config_version=5
 config/name="Late For Work"
 run/main_scene="uid://dq5msxt5cekxs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://addons/icon.svg"
+config/icon="uid://b2buqa1jwvcg6"
 
 [autoload]
 
 global="*res://scripts/global.gd"
+BackgroundMusic="*res://scenes/background_music.tscn"
 
 [display]
 
@@ -27,6 +28,10 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
