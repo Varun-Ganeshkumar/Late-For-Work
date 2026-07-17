@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cffyemrlnc061"]
+
+[ext_resource type="AudioStream" uid="uid://dpclwubqtu3h8" path="res://sounds/mfcc-retro-arcade-game-music-297305.mp3" id="1_0rulj"]
+[ext_resource type="Script" uid="uid://bw3rcvgcgavc5" path="res://scripts/background_music.gd" id="2_83psx"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_0rulj")
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_83psx")
