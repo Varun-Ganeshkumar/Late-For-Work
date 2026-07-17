@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=4 uid="uid://donwhse4bujky"]
+
+[ext_resource type="PackedScene" uid="uid://cqlm5lrjjq35l" path="res://scenes/player.tscn" id="1_wae8j"]
+[ext_resource type="Texture2D" uid="uid://cbfr5b1kfyoh1" path="res://sprites/TileMapLateForWork(3).png" id="2_ha73p"]
+[ext_resource type="PackedScene" uid="uid://mra0as80hy6c" path="res://scenes/killzone.tscn" id="3_vcx5n"]
+[ext_resource type="PackedScene" uid="uid://d1hplx16ex8gj" path="res://scenes/level_end.tscn" id="6_q2dsb"]
+[ext_resource type="PackedScene" uid="uid://cdeneqijmca1s" path="res://scenes/HUD.tscn" id="7_p3r0x"]
+[ext_resource type="PackedScene" uid="uid://d3j2phqk65jjs" path="res://scenes/background_scroll.tscn" id="8_5xqnf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rus8k"]
+texture = ExtResource("2_ha73p")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, -8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5xbjy"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rus8k")
+
+[node name="Level 3" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wae8j")]
+position = Vector2(-30, -25)
+
+[node name="TileMap" type="Node" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+z_index = 5
+position = Vector2(37, 39)
+tile_map_data = PackedByteArray("AAD6//3/AAAAAAEAAAD7//3/AAABAAEAAAD8//3/AAABAAEAAAD9//3/AAABAAEAAAD+//3/AAABAAEAAAD///3/AAABAAEAAAAAAP3/AAAAAAAAAAANAP3/AAAAAAEAAAAOAP3/AAABAAEAAAAPAP3/AAABAAEAAAAQAP3/AAAAAAAAAAAcAPn/AAAAAAAAAAAbAPn/AAAAAAEAAAAnAP//AAAAAAEAAAApAP//AAAAAAAAAAAuAP3/AAAAAAEAAAAvAP3/AAABAAEAAAAwAP3/AAAAAAAAAAAhAP3/AAACAAEAAAAiAP3/AAADAAEAAAA9APv/AAAAAAAAAAA8APv/AAABAAEAAAA7APv/AAABAAEAAAA6APv/AAABAAEAAAA5APv/AAABAAEAAAA4APv/AAABAAEAAAA3APv/AAABAAEAAAA2APv/AAAAAAEAAAAdAPr/AAAAAAEAAAAeAPr/AAAAAAAAAAAfAPv/AAABAAAAAAAfAPz/AAACAAEAAAAgAPv/AAACAAAAAAAgAPz/AAADAAEAAAAhAPz/AAABAAAAAAAiAPz/AAACAAAAAAA=")
+tile_set = SubResource("TileSet_5xbjy")
+
+[node name="Killzone" parent="." instance=ExtResource("3_vcx5n")]
+position = Vector2(367, 7)
+
+[node name="Items" type="Node2D" parent="."]
+position = Vector2(1323, -86)
+
+[node name="LevelEnd" parent="Items" instance=ExtResource("6_q2dsb")]
+position = Vector2(-328, 18)
+
+[node name="HUD" parent="." instance=ExtResource("7_p3r0x")]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("8_5xqnf")]
+z_index = -10
+position = Vector2(-11, 200)
+
+[node name="NoItems" type="Label" parent="."]
+offset_left = -84.0
+offset_top = -97.0
+offset_right = -19.0
+offset_bottom = -88.625
+theme_override_font_sizes/font_size = 6
+text = "NO ITEMS. GO NOW."
