@@ -1,6 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq5msxt5cekxs"]
+[gd_scene load_steps=12 format=3 uid="uid://dq5msxt5cekxs"]
 
 [ext_resource type="Script" uid="uid://c08cd4kdn0xl" path="res://scripts/start_button.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://7taw0yiy2urf" path="res://scripts/option_button.gd" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://c8s4cudhf5x7w" path="res://sprites/city by cityvector91.jpg" id="2_ekxnf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekxnf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.415686, 0.415686, 0.415686, 1)
@@ -25,28 +29,29 @@ corner_radius_bottom_left = 20
 shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wu84c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
 bg_color = Color(0.415686, 0.415686, 0.415686, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk1qb"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_color = Color(1, 1, 1, 0.6)
-shadow_size = 5
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -59,6 +64,7 @@ grow_vertical = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StartButton" type="Button" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -71,29 +77,12 @@ offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ekxnf")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
 text = "Start"
 script = ExtResource("1_l6cm7")
-
-[node name="OptionsButton" type="Button" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 74.0
-offset_right = 200.0
-offset_bottom = 174.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_8ln24")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
-theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
-text = "Options"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
@@ -101,12 +90,47 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -567.5
 offset_right = 567.5
-offset_bottom = 137.0
+offset_bottom = 139.583
 grow_horizontal = 2
 theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 80
 text = "Late For Work"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer"]
+offset_left = 438.0
+offset_top = 329.0
+offset_right = 729.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oa1go")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jk1qb")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Difficulty"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Easy Mode"
+popup/item_1/id = 1
+popup/item_2/text = "Normal Mode"
+popup/item_2/id = 2
+script = ExtResource("2_bqqt6")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1250, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(570, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ekxnf")
+
 [connection signal="pressed" from="CanvasLayer/StartButton" to="CanvasLayer/StartButton" method="_on_pressed"]
+[connection signal="item_selected" from="CanvasLayer/OptionButton" to="CanvasLayer/OptionButton" method="_on_item_selected"]
