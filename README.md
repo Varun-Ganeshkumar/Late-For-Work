@@ -13,6 +13,8 @@ There are two different difficulties you can choose from: Easy mode and Normal m
 
 Entire game made using GDScript in Godot with a total of 12 different scripts for each part of the 15 different scenes. 
 
+# Credits: 
+
 Music by MFCC on Pixabay
 
 Background by cityvector91 on Creative Fabrica
